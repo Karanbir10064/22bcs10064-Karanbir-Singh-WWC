@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+int sumOfNaturalNumbers(int n) {
+    return (n * (n + 1)) / 2; // Formula for the sum of first N natural numbers
+}
+int main() {
+    int N;
+    cout << "Enter a positive integer: ";
+    cin >> N;
+    if (N < 0) {
+        cout << "Please enter a non-negative integer." << endl;
+    } else {
+        cout << "The sum of the first " << N << " natural numbers is: " << sumOfNaturalNumbers(N) << endl;
+    }
+    return 0;
+}
