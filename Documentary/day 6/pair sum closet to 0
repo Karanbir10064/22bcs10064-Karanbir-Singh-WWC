@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits> // For INT_MAX
+using namespace std;
+
+pair<int, int> closestPairSumToZero(const vector<int>& arr) {
+    int n = arr.size();
+    if (n < 2) {
+        throw invalid_argument("Array must contain at least two elements.");
+    }
+
+    // Sort the array
+    vector<int> sortedArr = arr;
+    sort(sortedArr.begin(), sortedArr.end());
+
+    int left = 0;
+    int right = n - 1;
+    int closestSum = INT_MAX;
+    pair<int, int> closestPair;
+
+    while (left < right) {
+        int currentSum = sortedArr[left] + sortedArr[right];
+
+        // Update closest pair if the current sum is closer to zero
+        if (abs(currentSum) < abs(closestSum)) {
+            closestSum = currentSum;
+            closestPair = {sortedArr[left], sortedArr[right]};
+        }
+
+        // Move pointers based on the current sum
+        if (currentSum < 0) {
+            left++; // Increase the sum by moving the left pointer to the right
+        } else {
+            right--; // Decrease the sum by moving the right pointer to the left
+        }
+    }
+
+    return closestPair;
+}
+
+int main() {
+    vector<int> arr = {1, 60, -10, 70, -80, 85};
+    
+    try {
+        pair<int, int> result = closestPairSumToZero(arr);
+        cout << "Pair with sum closest to zero: (" << result.first << ", " << result.second << ")" << endl;
+    } catch (const invalid_argument& e) {
+        cout << e.what() << endl;
+    }
+
+    return 0;
+}
