@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int numberToFind;
+    
+    cout << "Enter a number to search: ";
+    cin >> numberToFind;
+
+    bool found = false;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == numberToFind) {
+            found = true;
+            cout << "Number " << numberToFind << " found at index " << i << endl;
+            break;
+        }
+    }
+
+    if (!found) {
+        cout << "Number " << numberToFind << " not found in the array." << endl;
+    }
+
+    return 0;
+}
